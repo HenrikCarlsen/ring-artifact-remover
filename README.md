@@ -8,7 +8,8 @@ based on median filters and thresholding.
 The purpose is not to make the best ring removal but to show how intuative and easy the process can be while still
 being a very effective tool, as seen in the Chalk sample image.
 
-![](resources/picturesForReadme/ChalkSampleReconstruction.png) ![](resources/picturesForReadme/ChalkSampleReconstructionWithoutRingArtifacts.png) ![](resources/picturesForReadme/ChalkSampleReconstructionsDifference.png)
+
+![](resources/picturesForReadme/ChalkSampleReconstruction.png){width=30%} ![](resources/picturesForReadme/ChalkSampleReconstructionWithoutRingArtifacts.png){width=30%} ![](resources/picturesForReadme/ChalkSampleReconstructionsDifference.png){width=30%}
 
 
 # Algorithm
