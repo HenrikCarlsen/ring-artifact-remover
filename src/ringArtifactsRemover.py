@@ -4,6 +4,32 @@ from . import sinogramTransformer as ST
 
 
 def ringArtifactsRemover(image,isSinogram=False,GPU=False,threshold=None,filters=None):
+    """
+    Simple ring artifact removal for tomograms using threshold for detecting 
+    and median filter for interpolation 
+
+    Parameters
+    ----------
+    image : ndarray
+        The image can be the data in real space or if isSinogram is true 
+        in the radon domain
+    isSinogram : bool, optional
+        see image
+    GPU : bool, optional
+        Enable ASTRA algorithm SIRT_CUDA which gives a significant 
+        better reconstruction but requires specific graphic cards
+    threshold : float, optional
+        Value to detect the ring artifact, lower means more rings are detect, 
+        but also higher error rate due to noise, if None the threshold will 
+        be calculated based on the noise
+    filters : function, optional
+        the filter used to smooth out the ring artifact, if set to None a 
+        median filter with size 3 is used.
+    Returns
+    -------
+    result : ndarray
+        The image or sinogram with ring artifact interpolated out
+    """
     if isSinogram:
         sinogram = image
     else:
