@@ -2,19 +2,15 @@
 A simple ring artifact remover for tomography
 
 # Introduction
-Ring artifacts in tomogram reconstructions are due to dead or damaged pixels on the detector used.
-We purpose a simple but effective algorithm for remove these artifacts using the sinogram of the reconstructions 
-based on median filters and thresholding.
-The purpose is not to make the best ring removal but to show how intuative and easy the process can be while still
-being a very effective tool, as seen in the Chalk sample image.
+Ring artifacts in tomogram reconstructions are high frequency features shaped like rings  due to dead or damaged detector pixels. We purpose a simple but effective algorithm for remove these artifacts using the sinogram of the reconstructions based on median filters and thresholding.
+The purpose is not to make the best ring removal but to show how intuitive and easy the process can be done while still remaining a very effective tool, as seen in the Chalk sample image below.
 
 <img src="resources/picturesForReadme/ChalkSampleReconstruction.png" width="30%"> <img src="resources/picturesForReadme/ChalkSampleReconstructionWithoutRingArtifacts.png" width="30%"> <img src="resources/picturesForReadme/ChalkSampleReconstructionsDifference.png" width="30%">
 
 # Algorithm
-Using the Shepp-Logan image as a test bed 
+First we sinogram of the image using the radon transformation as the rings form lines in this domain. The sinogram is summed along the angle of projection axis to amplify the rings.
+This sum is median filtered and subtracted from the original summed sinogram.
+This difference magnify the ring artifacts, which now can be thresholded out. To compensate for the damage pixel it was found to be best to interpolate using nearest neighbour methods, as long are there are no ring artifacts next to each other.
 
-Using the astra library the sinogram of the image can be found.
-The sinogram is summed along the angle of projection axis to amplify the rings.
-This sum as function of detector pixel is median filted and subtracted from the original summed sinogram.
-This difference magnimagnify the ring artifacts, which now can be thresholded out.
-To composate for the damage pixel it was found to be best to interpolate using nearest neighbour methods.
+# Credits
+This code is based on the presentation project written in cooperation between Emma Mellhammar and Henrik Hoffmann Carlsen during the PhD Summer school Cinemax iii.
